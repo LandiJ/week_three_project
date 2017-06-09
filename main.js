@@ -3,16 +3,22 @@ var buttons = document.querySelectorAll(".button");
 var box = document.querySelector(".calc_box");
 var div = document.querySelector("div");
 var clear = document.querySelector("#large_c");
+var equals = document.querySelector("#equals");
 
 console.log(buttons);
 
 for (var i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener("click", function() {
-    var value = event.target.innerHTML;
-    box.textContent += value;
+    box.textContent += event.target.innerHTML;
   });
 }
 
 clear.addEventListener("click", function() {
   box.textContent = "";
+});
+
+equals.addEventListener("click", function() {
+  var value = box.innerHTML;
+  var total = eval(value);
+  console.log("total: ", total);
 });
