@@ -1,0 +1,30 @@
+body {
+    color: lightgreen;
+    margin: 29%;
+}
+
+#calc_body {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.button {
+    padding: 9.3%;
+    background-color: #61B34F;
+    border: 1px solid lightgreen;
+    flex: 1;
+    font-size: 27px;
+    font-family: 'Muli', sans-serif;
+    font-weight: lighter;
+    color: white;
+}
+
+.calc_box {
+    border: none;
+    border-bottom: 1px solid lightgreen;
+}
+
+#large_c {
+    border-right: 2px solid lightgreen;
+    padding-right: 9%;
+}
