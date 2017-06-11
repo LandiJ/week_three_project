@@ -64,3 +64,16 @@ body {
     border-right: 2px solid lightgreen;
     padding-right: 9%;
 }
+
+.operator {
+    padding: 9.3%;
+    background-color: #61B34F;
+    border: 1px solid lightgreen;
+    flex: 1;
+    font-size: 27px;
+    font-family: 'Muli', sans-serif;
+    font-weight: lighter;
+    color: white;
+    border-right: 2px solid lightgreen;
+    padding-right: 9%;
+}
