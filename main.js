@@ -25,7 +25,12 @@ var operatorsUsed = [];
 
 console.log(nums);
 
-clear.addEventListener("click", function() {});
+clear.addEventListener("click", function() {
+  nums = [];
+  total = [];
+  operatorsUsed = [];
+  box.innerHTML = "";
+});
 
 for (var i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener("click", function() {
@@ -36,8 +41,10 @@ for (var i = 0; i < buttons.length; i++) {
 
 for (var i = 0; i < operator.length; i++) {
   operator[i].addEventListener("click", function() {
-    box.innerHTML += event.target.innerHTML;
-    var numNum = parseInt(nums.join(""));
+    if (event.target.id != "multiply") {
+      box.innerHTML += event.target.innerHTML;
+    }
+    var numNum = nums.join("");
     total.push(numNum);
     total.push(event.target.innerHTML);
     operatorsUsed.push(event.target.innerHTML);
@@ -52,14 +59,90 @@ equals.addEventListener("click", function() {
   total.push(nums);
   var newNum = null;
   if ((operatorsUsed.length = total.length - 1)) {
-    if (total.indexOf("X") > -1) {
-      newNum = total[total.indexOf("X") - 1] * total[total.indexOf("X") + 1];
-      console.log(newNum);
-      total.splice(total.indexOf("X") - 1, 1);
-      total.splice(total.indexOf("X") + 1, 1);
-      total[total.indexOf("X")] = newNum;
-      console.log(total);
-      newNum = null;
+    for (var i = 0; i < total.length; i++) {
+      if (total.indexOf("X") > -1 && total.indexOf("X") < total.indexOf("/")) {
+        newNum = total[total.indexOf("X") - 1] * total[total.indexOf("X") + 1];
+        console.log(newNum);
+        total.splice(total.indexOf("X") - 1, 1);
+        total.splice(total.indexOf("X") + 1, 1);
+        total[total.indexOf("X")] = newNum;
+        console.log(total);
+        newNum = null;
+      }
+      if (total.indexOf("/") > -1) {
+        newNum = total[total.indexOf("/") - 1] / total[total.indexOf("/") + 1];
+        console.log(newNum);
+        total.splice(total.indexOf("/") - 1, 1);
+        total.splice(total.indexOf("/") + 1, 1);
+        total[total.indexOf("/")] = newNum;
+        console.log(total);
+        newNum = null;
+      }
+
+      if (total.indexOf("/") > -1 && total.indexOf("/") < total.indexOf("X")) {
+        newNum = total[total.indexOf("/") - 1] / total[total.indexOf("/") + 1];
+        console.log(newNum);
+        total.splice(total.indexOf("/") - 1, 1);
+        total.splice(total.indexOf("/") + 1, 1);
+        total[total.indexOf("/")] = newNum;
+        console.log(total);
+        newNum = null;
+      }
+      if (total.indexOf("X") > -1) {
+        newNum = total[total.indexOf("X") - 1] * total[total.indexOf("X") + 1];
+        console.log(newNum);
+        total.splice(total.indexOf("X") - 1, 1);
+        total.splice(total.indexOf("X") + 1, 1);
+        total[total.indexOf("X")] = newNum;
+        console.log(total);
+        newNum = null;
+      }
+      if (total.indexOf("+") > -1 && total.indexOf("+") < total.indexOf("-")) {
+        newNum =
+          parseFloat(total[total.indexOf("+") - 1]) +
+          parseFloat(total[total.indexOf("+") + 1]);
+        console.log(newNum);
+        total.splice(total.indexOf("+") - 1, 1);
+        total.splice(total.indexOf("+") + 1, 1);
+        total[total.indexOf("+")] = newNum;
+        console.log(total);
+        newNum = null;
+      }
+
+      if (total.indexOf("-") > -1) {
+        newNum =
+          parseFloat(total[total.indexOf("-") - 1]) -
+          parseFloat(total[total.indexOf("-") + 1]);
+        console.log(newNum);
+        total.splice(total.indexOf("-") - 1, 1);
+        total.splice(total.indexOf("-") + 1, 1);
+        total[total.indexOf("-")] = newNum;
+        console.log(total);
+        newNum = null;
+      }
+      if (total.indexOf("-") > -1 && total.indexOf("-") < total.indexOf("+")) {
+        newNum =
+          parseFloat(total[total.indexOf("-") - 1]) -
+          parseFloat(total[total.indexOf("-") + 1]);
+        console.log(newNum);
+        total.splice(total.indexOf("-") - 1, 1);
+        total.splice(total.indexOf("-") + 1, 1);
+        total[total.indexOf("-")] = newNum;
+        console.log(total);
+        newNum = null;
+      }
+      if (total.indexOf("+") > -1) {
+        newNum =
+          parseFloat(total[total.indexOf("+") - 1]) +
+          parseFloat(total[total.indexOf("+") + 1]);
+        console.log(newNum);
+        total.splice(total.indexOf("+") - 1, 1);
+        total.splice(total.indexOf("+") + 1, 1);
+        total[total.indexOf("+")] = newNum;
+        console.log(total);
+        newNum = null;
+      }
     }
+    box.innerHTML = total.toString();
   }
 });

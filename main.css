@@ -8,7 +8,7 @@ body {
     flex-wrap: wrap;
 }
 
-.button {
+.buttonCss {
     padding: 9.3%;
     background-color: #61B34F;
     border: 1px solid lightgreen;
@@ -26,7 +26,8 @@ body {
     text-align: right;
 }
 
-#large_c {
+
+/*#large_c {
     padding: 9.3%;
     background-color: #61B34F;
     border: 1px solid lightgreen;
@@ -35,45 +36,51 @@ body {
     font-family: 'Muli', sans-serif;
     font-weight: lighter;
     color: white;
-    border-right: 2px solid lightgreen;
+    border-right: .5px solid lightgreen;
     padding-right: 9%;
+}*/
+
+#large_c:hover {
+    background-color: #83C178;
 }
 
-#equals {
-    padding: 9.3%;
-    background-color: #61B34F;
-    border: 1px solid lightgreen;
-    flex: 1;
-    font-size: 27px;
-    font-family: 'Muli', sans-serif;
-    font-weight: lighter;
-    color: white;
-    border-right: 2px solid lightgreen;
-    padding-right: 9%;
-}
 
-#multiply {
+/*#equals {
     padding: 9.3%;
     background-color: #61B34F;
-    border: 1px solid lightgreen;
+    border: .5px solid lightgreen;
     flex: 1;
     font-size: 27px;
     font-family: 'Muli', sans-serif;
     font-weight: lighter;
     color: white;
-    border-right: 2px solid lightgreen;
+    border-right: 1px solid lightgreen;
+    padding-right: 9.3%;
+}*/
+
+
+/*#multiply {
+    padding: 9.3%;
+    border: 1px solid lightgreen;
+    flex: 1;
+    font-size: 27px;
+    font-family: 'Muli', sans-serif;
+    font-weight: lighter;
+    color: darkgreen;
+    border-right: .5px solid lightgreen;
     padding-right: 9%;
+    background-color: #83C178;
+}*/
+
+#multiply:hover {
+    color: white;
 }
 
 .operator {
-    padding: 9.3%;
-    background-color: #61B34F;
-    border: 1px solid lightgreen;
-    flex: 1;
-    font-size: 27px;
-    font-family: 'Muli', sans-serif;
-    font-weight: lighter;
+    background-color: #83C178;
+    color: darkgreen;
+}
+
+.operator:hover {
     color: white;
-    border-right: 2px solid lightgreen;
-    padding-right: 9%;
 }
