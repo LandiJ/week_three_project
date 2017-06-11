@@ -84,3 +84,13 @@ body {
 .operator:hover {
     color: white;
 }
+
+#empty {
+    flex-basis: 50%;
+    background-color: #61B34F;
+    ;
+}
+
+#equals:hover {
+    background-color: #83C178;
+}

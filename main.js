@@ -11,19 +11,15 @@ box.innerHTML = "";
 
 for (var i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener("click", function() {
-    box.innerHTML += event.target.innerHTML;
+    if (box.innerHTML.length < 16) {
+      box.innerHTML += event.target.innerHTML;
+    }
   });
 }
-
-multiply.addEventListener("click", function() {
-  box.innerHTML += "*";
-});
 
 var nums = [];
 var total = [];
 var operatorsUsed = [];
-
-console.log(nums);
 
 clear.addEventListener("click", function() {
   nums = [];
@@ -39,19 +35,29 @@ for (var i = 0; i < buttons.length; i++) {
   });
 }
 
+if (nums.length > 0) {
+  multiply.addEventListener("click", function() {
+    if (box.innerHTML.length < 16) {
+      box.innerHTML += "*";
+    }
+  });
+}
+
 for (var i = 0; i < operator.length; i++) {
   operator[i].addEventListener("click", function() {
-    if (event.target.id != "multiply") {
-      box.innerHTML += event.target.innerHTML;
+    {
+      if (event.target.id != "multiply" && box.innerHTML.length < 16) {
+        box.innerHTML += event.target.innerHTML;
+      }
+      var numNum = nums.join("");
+      total.push(numNum);
+      total.push(event.target.innerHTML);
+      operatorsUsed.push(event.target.innerHTML);
+      nums = [];
+      console.log(nums);
+      console.log(total);
+      console.log(operatorsUsed);
     }
-    var numNum = nums.join("");
-    total.push(numNum);
-    total.push(event.target.innerHTML);
-    operatorsUsed.push(event.target.innerHTML);
-    nums = [];
-    console.log(nums);
-    console.log(total);
-    console.log(operatorsUsed);
   });
 }
 
@@ -142,7 +148,26 @@ equals.addEventListener("click", function() {
         console.log(total);
         newNum = null;
       }
+      if (total.indexOf("%") > -1 && total.length === 3) {
+        newNum =
+          parseInt(total[total.indexOf("%") - 1]) %
+          parseInt(total[total.indexOf("%") + 1]);
+        total.splice(total.indexOf("%") - 1, 1);
+        total.splice(total.indexOf("%") + 1, 1);
+        total[total.indexOf("%")] = newNum;
+        console.log(total);
+        newNum = null;
+      }
+      if (total.indexOf("√") > -1) {
+        newNum = Math.sqrt(total[total.indexOf("√") + 1]);
+        total.splice(total.indexOf("√") + 1, 1);
+        total.splice(total.indexOf("√") - 1, 1);
+        total[total.indexOf("√")] = newNum;
+        console.log(total);
+        console.log(total.length);
+        newNum = null;
+      }
     }
-    box.innerHTML = total.toString();
   }
+  box.innerHTML = parseFloat(total).toFixed(5).toString();
 });
