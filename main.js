@@ -1,13 +1,13 @@
 var buttons = document.querySelectorAll(".button");
-// var calculator = document.querySelector("#calc_body");
 var box = document.querySelector(".calc_box");
-var div = document.querySelector("div");
 var clear = document.querySelector("#large_c");
 var equals = document.querySelector("#equals");
 var multiply = document.querySelector("#multiply");
 var operator = document.querySelectorAll(".operator");
 
 box.innerHTML = "";
+
+// This portion of the code turns the numbers on the calculators to buttons.
 
 for (var i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener("click", function() {
@@ -16,10 +16,17 @@ for (var i = 0; i < buttons.length; i++) {
     }
   });
 }
+multiply.addEventListener("click", function() {
+  if (box.innerHTML.length < 16) {
+    box.innerHTML += "*";
+  }
+});
 
 var nums = [];
 var total = [];
 var operatorsUsed = [];
+
+// The clear button should clear out all of the variables used as well as the calculator display.
 
 clear.addEventListener("click", function() {
   nums = [];
@@ -28,6 +35,8 @@ clear.addEventListener("click", function() {
   box.innerHTML = "";
 });
 
+// Each time that we click a button, the number that is pushed should go into the nums array immediately.
+
 for (var i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener("click", function() {
     nums.push(event.target.innerHTML);
@@ -35,13 +44,7 @@ for (var i = 0; i < buttons.length; i++) {
   });
 }
 
-if (nums.length > 0) {
-  multiply.addEventListener("click", function() {
-    if (box.innerHTML.length < 16) {
-      box.innerHTML += "*";
-    }
-  });
-}
+// Each time an operator is clicked, the nums array turns into a single number which gets pushed into the total array. The operator itself goes into the operatorsUsed array and into the total array.
 
 for (var i = 0; i < operator.length; i++) {
   operator[i].addEventListener("click", function() {
@@ -62,12 +65,15 @@ for (var i = 0; i < operator.length; i++) {
 }
 
 equals.addEventListener("click", function() {
-  total.push(nums);
+  total.push(nums.join("").toString());
+  console.log(total);
   var newNum = null;
   if ((operatorsUsed.length = total.length - 1)) {
     for (var i = 0; i < total.length; i++) {
       if (total.indexOf("X") > -1 && total.indexOf("X") < total.indexOf("/")) {
-        newNum = total[total.indexOf("X") - 1] * total[total.indexOf("X") + 1];
+        newNum =
+          parseInt(total[total.indexOf("X") - 1]) *
+          parseInt(total[total.indexOf("X") + 1]);
         console.log(newNum);
         total.splice(total.indexOf("X") - 1, 1);
         total.splice(total.indexOf("X") + 1, 1);
@@ -75,6 +81,7 @@ equals.addEventListener("click", function() {
         console.log(total);
         newNum = null;
       }
+
       if (total.indexOf("/") > -1) {
         newNum = total[total.indexOf("/") - 1] / total[total.indexOf("/") + 1];
         console.log(newNum);
@@ -95,7 +102,9 @@ equals.addEventListener("click", function() {
         newNum = null;
       }
       if (total.indexOf("X") > -1) {
-        newNum = total[total.indexOf("X") - 1] * total[total.indexOf("X") + 1];
+        newNum =
+          parseInt(total[total.indexOf("X") - 1]) *
+          parseInt(total[total.indexOf("X") + 1]);
         console.log(newNum);
         total.splice(total.indexOf("X") - 1, 1);
         total.splice(total.indexOf("X") + 1, 1);
@@ -148,13 +157,13 @@ equals.addEventListener("click", function() {
         console.log(total);
         newNum = null;
       }
-      if (total.indexOf("%") > -1 && total.length === 3) {
+      if (total.indexOf("mod") > -1 && total.length === 3) {
         newNum =
-          parseInt(total[total.indexOf("%") - 1]) %
-          parseInt(total[total.indexOf("%") + 1]);
-        total.splice(total.indexOf("%") - 1, 1);
-        total.splice(total.indexOf("%") + 1, 1);
-        total[total.indexOf("%")] = newNum;
+          parseInt(total[total.indexOf("mod") - 1]) %
+          parseInt(total[total.indexOf("mod") + 1]);
+        total.splice(total.indexOf("mod") - 1, 1);
+        total.splice(total.indexOf("mod") + 1, 1);
+        total[total.indexOf("mod")] = newNum;
         console.log(total);
         newNum = null;
       }
@@ -169,5 +178,5 @@ equals.addEventListener("click", function() {
       }
     }
   }
-  box.innerHTML = parseFloat(total).toFixed(5).toString();
+  box.innerHTML = parseFloat(total).toFixed(2).toString();
 });
