@@ -1,7 +1,7 @@
 body {
     color: lightgreen;
-    margin: 29%;
     background-color: lightgreen;
+    margin-top: 18rem;
 }
 
 header {
@@ -20,24 +20,24 @@ header {
     flex-wrap: wrap;
     position: relative;
     bottom: 11rem;
-    box-shadow: 0 0 40px #000;
+    height: 100vh;
 }
 
 .buttonCss {
-    padding: 9.3%;
     background-color: #61B34F;
     border: 1px solid lightgreen;
-    flex: 1;
+    flex: 1 22%;
     font-size: 27px;
     font-family: 'Muli', sans-serif;
     font-weight: lighter;
     color: white;
+    height: 21%;
 }
 
 .calc_box {
     border: none;
     border: 1px solid lightgreen;
-    flex: 1 50%;
+    flex: 1 72%;
     text-align: right;
     overflow-x: scroll;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -71,6 +71,17 @@ header {
 }
 
 #mod {
-    padding: 8%;
     font-size: 26.5px;
+}
+
+@media (min-width:790px) {
+    #calc_body {
+        margin: 10rem;
+    }
+}
+
+@media (min-width:1050px) {
+    #calc_body {
+        margin: 10rem 20rem 20rem 20rem;
+    }
 }
